@@ -1,0 +1,25 @@
+{
+  "name": "hydrooj-dynamic-data-judge",
+  "version": "0.1.0",
+  "description": "HydroOJ plugin for judging with dynamically generated test data.",
+  "main": "index.ts",
+  "license": "AGPL-3.0-or-later",
+  "author": "HydroOJ Plugin Maintainers",
+  "hydro": {
+    "cli": false
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@hydrooj/common": "^0.0.9",
+    "@hydrooj/hydrojudge": "^4.0.4",
+    "@types/node": "^22.10.0",
+    "hydrooj": "^5.0.3",
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "@hydrooj/hydrojudge": ">=4.0.0",
+    "hydrooj": ">=5.0.0"
+  }
+}
