@@ -1,0 +1,16 @@
+type: dynamic_generator
+time: 1s
+memory: 256m
+checker_type: default
+
+dynamic:
+  generator: gen.cpp
+  standard: std.cpp
+  count: 10
+  seedBase: 20260614
+  generatorArgs: ["{index}", "{seed}"]
+  stdArgs: ["{index}"]
+  generatorTime: 2s
+  generatorMemory: 256m
+  standardTime: 2s
+  standardMemory: 256m
