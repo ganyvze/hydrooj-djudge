@@ -186,10 +186,26 @@ function outputFile(result: SandboxRunResult): CopyInFile {
     return { content: result.stdout || '' };
 }
 
+/**
+ * If a source is a plain .cpp filename (or an object without an explicit lang),
+ * pin it to C++17 with O2 optimisations so gen / std are always compiled the
+ * same way regardless of the judge's default language settings.
+ */
+function pinCppSource(source: CompilableSource): CompilableSource {
+    if (typeof source === 'string') {
+        return /\.cpp$/i.test(source) ? { file: source, lang: 'cc.cc17o2' } : source;
+    }
+    // Object form: honour an explicit lang, but default .cpp to cc17o2
+    if (!source.lang && /\.cpp$/i.test(source.file)) {
+        return { ...source, lang: 'cc.cc17o2' };
+    }
+    return source;
+}
+
 function readDynamicConfig(ctx: JudgeContext): ResolvedDynamicConfig {
     const raw = (ctx.config as any).dynamic as DynamicProblemConfig || {};
-    const generator = raw.generator || raw.gen || (ctx.config as any).generator || (ctx.config as any).gen || 'gen.cpp';
-    const standard = raw.standard || raw.std || (ctx.config as any).standard || (ctx.config as any).std || 'std.cpp';
+    const generator = pinCppSource(raw.generator || raw.gen || (ctx.config as any).generator || (ctx.config as any).gen || 'gen.cpp');
+    const standard = pinCppSource(raw.standard || raw.std || (ctx.config as any).standard || (ctx.config as any).std || 'std.cpp');
     const count = Number(raw.count || (ctx.config as any).dynamic_count || 0);
     return {
         generator,
