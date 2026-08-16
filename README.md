@@ -32,10 +32,10 @@ hydrooj-dynamic-data-judge/
 
 ```bash
 cd /root/.hydro/addons
-git clone <this-plugin-repo> dynamic-data-judge
-cd dynamic-data-judge
+git clone https://github.com/ganyvze/hydrooj-djudge
+cd hydrooj-djudge
 npm install
-hydrooj addon add /root/.hydro/addons/dynamic-data-judge
+hydrooj addon add /root/.hydro/addons/hydrooj-djudge
 pm2 restart hydrooj
 ```
 
