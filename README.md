@@ -39,6 +39,12 @@ hydrooj addon add /root/.hydro/addons/hydrooj-djudge
 pm2 restart hydrooj
 ```
 
+一键安装：
+
+```bash
+cd /root/.hydro/addons && git clone https://github.com/ganyvze/hydrooj-djudge && cd hydrooj-djudge && npm install && hydrooj addon add /root/.hydro/addons/hydrooj-djudge && pm2 restart hydrooj
+```
+
 请在插件目录中安装开发依赖。Hydro 会直接加载 TypeScript 插件，本地的 `hydrooj` 包提供了 `index.ts` 中使用的运行时导入和类型声明。
 
 对于独立运行的 HydroJudge 守护进程（Daemon），请在同样的 Hydro 环境中安装此插件并重启评测进程。未加载该插件的评测机将因无法识别 `type: dynamic_generator` 而拒绝评测任务。
